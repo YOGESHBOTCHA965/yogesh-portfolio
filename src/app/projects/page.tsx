@@ -19,48 +19,60 @@ interface Project {
 const projects: Project[] = [
   {
     id: 1,
-    title: 'Risk Management & Compliance Strategy for Uber Operations',
-    description:
-      'Conducting a comprehensive risk assessment on Uber\'s ride-sharing operations, identifying vulnerabilities in driver safety, fraudulent bookings, and compliance gaps. Developing mitigation strategies using NIST RMF and STRIDE threat modeling to strengthen operational security posture.',
-    technologies: ['NIST RMF', 'STRIDE', 'Risk Assessment', 'Compliance', 'Threat Modeling'],
-    gradient: 'from-violet-500/20 to-purple-600/20',
-    category: 'Cybersecurity',
-    highlights: ['NIST RMF framework', 'STRIDE modeling', 'Risk mitigation'],
-    status: 'In Progress',
-  },
-  {
-    id: 2,
-    title: 'Network Security Monitoring System',
-    description:
-      'Deployed and configured SIEM tools (Splunk, ELK Stack) to monitor and analyze network traffic for potential security threats. Created custom dashboards to visualize attack patterns and implemented automated alerting systems for detecting anomalies in real-time.',
-    technologies: ['Splunk', 'ELK Stack', 'SIEM', 'Network Monitoring', 'Dashboard Design'],
-    gradient: 'from-cyan-500/20 to-blue-600/20',
-    category: 'Cybersecurity',
-    highlights: ['Custom SIEM dashboards', 'Automated alerting', 'Threat detection'],
-  },
-  {
-    id: 3,
-    title: 'Network Traffic Analysis Using Wireshark',
-    description:
-      'Analyzed network traffic with Wireshark to detect threats like ARP/DNS spoofing and data exfiltration, enhancing overall security posture. Delivered concise reports on anomalies, vulnerabilities, and proactive solutions to strengthen network defense.',
-    technologies: ['Wireshark', 'Network Analysis', 'ARP Spoofing', 'DNS Analysis', 'Security Reports'],
-    gradient: 'from-emerald-500/20 to-teal-600/20',
-    category: 'Cybersecurity',
-    highlights: ['Threat detection', 'Vulnerability reports', 'Network defense'],
-  },
-  {
-    id: 4,
     title: 'WorkOnWheels (WOW)',
     description:
       'Designed and developed a full-stack website for bike and car service bookings for users unable to visit garages. Built with Java, Angular, HTML, CSS, and Spring Boot featuring a user-friendly interface, efficient scheduling, and streamlined booking systems.',
     technologies: ['Java', 'Angular', 'Spring Boot', 'HTML', 'CSS', 'REST APIs'],
-    githubLink: '#',
+    liveLink: 'https://yogeshbotcha965.github.io/W/',
+    githubLink: 'https://github.com/YOGESHBOTCHA965/W',
     gradient: 'from-amber-500/20 to-orange-600/20',
     category: 'Web Development',
     highlights: ['Full-stack app', 'Booking system', 'User-friendly UI'],
   },
   {
+    id: 2,
+    title: 'Daily Schedule Tracker Website',
+    description:
+      'Built a web-based task and schedule management system using Java and frontend technologies to help users organize daily activities with persistent database storage. Designed intuitive interfaces and backend services that support CRUD operations and smooth workflow management.',
+    technologies: ['Java', 'HTML', 'CSS', 'JavaScript', 'SQL', 'CRUD', 'Spring Boot'],
+    liveLink: 'https://yogeshbotcha965.github.io/schedule-tracker/',
+    githubLink: 'https://github.com/YOGESHBOTCHA965/schedule-tracker',
+    gradient: 'from-teal-500/20 to-cyan-600/20',
+    category: 'Web Development',
+    highlights: ['CRUD operations', 'Database storage', 'Task management'],
+  },
+  {
+    id: 3,
+    title: 'AI Voice Agent',
+    description:
+      'Built an intelligent voice agent integrating speech recognition, language generation, and text-to-speech modules with custom voice cloning for real-time, natural human-AI conversations. Developed end-to-end pipeline connecting audio input processing to dynamic response generation.',
+    technologies: ['Python', 'Speech Recognition', 'NLP', 'TTS', 'Voice Cloning', 'AI/ML'],
+    gradient: 'from-fuchsia-500/20 to-pink-600/20',
+    category: 'Web Development',
+    highlights: ['Voice cloning', 'Real-time conversations', 'End-to-end pipeline'],
+  },
+  {
+    id: 4,
+    title: 'Builder Company Website',
+    description:
+      'Created a responsive business website for a construction company featuring service listings, client inquiry forms, and dynamic content management. Emphasized performance, usability, and maintainability with clean, modern design.',
+    technologies: ['HTML', 'CSS', 'JavaScript', 'Bootstrap', 'Responsive Design'],
+    gradient: 'from-yellow-500/20 to-amber-600/20',
+    category: 'Web Development',
+    highlights: ['Responsive design', 'Client inquiry forms', 'Content management'],
+  },
+  {
     id: 5,
+    title: 'Risk Management & Compliance Strategy for Uber Operations',
+    description:
+      'Conducted a comprehensive risk assessment on Uber\'s ride-sharing operations, identifying vulnerabilities in driver safety, fraudulent bookings, and compliance gaps. Developed mitigation strategies using NIST RMF and STRIDE threat modeling to strengthen operational security posture.',
+    technologies: ['NIST RMF', 'STRIDE', 'Risk Assessment', 'Compliance', 'Threat Modeling'],
+    gradient: 'from-violet-500/20 to-purple-600/20',
+    category: 'Cybersecurity',
+    highlights: ['NIST RMF framework', 'STRIDE modeling', 'Risk mitigation'],
+  },
+  {
+    id: 6,
     title: 'NCL CTF Competition - 99th Percentile',
     description:
       'Competed in the National Cyber League Fall 2025 Team Game as part of Team ACM @ CSU. Achieved 67th place out of 4,214 participants (99th percentile) with strong performance across 9 cybersecurity categories including Forensics, OSINT, Cryptography, and Web Application Exploitation.',
@@ -71,34 +83,24 @@ const projects: Project[] = [
     highlights: ['99th percentile', '67th / 4,214', 'Team ACM @ CSU'],
   },
   {
-    id: 6,
-    title: 'AI Voice Agent',
-    description:
-      'Built an intelligent voice agent integrating speech recognition, language generation, and text-to-speech modules with custom voice cloning for real-time, natural human-AI conversations. Developed end-to-end pipeline connecting audio input processing to dynamic response generation.',
-    technologies: ['Python', 'Speech Recognition', 'NLP', 'TTS', 'Voice Cloning', 'AI/ML'],
-    gradient: 'from-fuchsia-500/20 to-pink-600/20',
-    category: 'Web Development',
-    highlights: ['Voice cloning', 'Real-time conversations', 'End-to-end pipeline'],
-  },
-  {
     id: 7,
-    title: 'Daily Schedule Tracker Website',
+    title: 'Network Security Monitoring System',
     description:
-      'Built a web-based task and schedule management system using Java and frontend technologies to help users organize daily activities with persistent database storage. Designed intuitive interfaces and backend services that support CRUD operations and smooth workflow management.',
-    technologies: ['Java', 'HTML', 'CSS', 'JavaScript', 'SQL', 'CRUD', 'Spring Boot'],
-    gradient: 'from-teal-500/20 to-cyan-600/20',
-    category: 'Web Development',
-    highlights: ['CRUD operations', 'Database storage', 'Task management'],
+      'Deployed and configured SIEM tools (Splunk, ELK Stack) to monitor and analyze network traffic for potential security threats. Created custom dashboards to visualize attack patterns and implemented automated alerting systems for detecting anomalies in real-time.',
+    technologies: ['Splunk', 'ELK Stack', 'SIEM', 'Network Monitoring', 'Dashboard Design'],
+    gradient: 'from-cyan-500/20 to-blue-600/20',
+    category: 'Cybersecurity',
+    highlights: ['Custom SIEM dashboards', 'Automated alerting', 'Threat detection'],
   },
   {
     id: 8,
-    title: 'Builder Company Website',
+    title: 'Network Traffic Analysis Using Wireshark',
     description:
-      'Created a responsive business website for a construction company featuring service listings, client inquiry forms, and dynamic content management. Emphasized performance, usability, and maintainability with clean, modern design.',
-    technologies: ['HTML', 'CSS', 'JavaScript', 'Bootstrap', 'Responsive Design'],
-    gradient: 'from-yellow-500/20 to-amber-600/20',
-    category: 'Web Development',
-    highlights: ['Responsive design', 'Client inquiry forms', 'Content management'],
+      'Analyzed network traffic with Wireshark to detect threats like ARP/DNS spoofing and data exfiltration, enhancing overall security posture. Delivered concise reports on anomalies, vulnerabilities, and proactive solutions to strengthen network defense.',
+    technologies: ['Wireshark', 'Network Analysis', 'ARP Spoofing', 'DNS Analysis', 'Security Reports'],
+    gradient: 'from-emerald-500/20 to-teal-600/20',
+    category: 'Cybersecurity',
+    highlights: ['Threat detection', 'Vulnerability reports', 'Network defense'],
   },
 ]
 
