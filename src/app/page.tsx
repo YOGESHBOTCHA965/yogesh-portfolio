@@ -94,7 +94,7 @@ export default function Home() {
               <Mail size={18} />
               Get In Touch
             </Link>
-            <a href="/Yogesh_Botcha_Resume.pdf" download className="btn-secondary flex items-center justify-center gap-2 group">
+            <a href={`${process.env.NEXT_PUBLIC_BASE_PATH || ''}/Yogesh_Botcha_Resume.pdf`} download className="btn-secondary flex items-center justify-center gap-2 group">
               <Download size={18} />
               Download Resume
             </a>
