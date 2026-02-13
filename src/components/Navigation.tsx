@@ -44,7 +44,7 @@ export default function Navigation() {
               Y
             </div>
             <span className="text-white font-semibold text-lg hidden sm:block tracking-tight">
-              Yogesh<span className="text-cyan-400">.</span>
+              Yogesh
             </span>
           </Link>
 
