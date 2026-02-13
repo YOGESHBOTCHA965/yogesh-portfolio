@@ -1,7 +1,7 @@
 'use client'
 
 import Link from 'next/link'
-import { ArrowRight, Github, Linkedin, Mail, Code2, Shield, Zap, ChevronDown, Layers, Globe, Server } from 'lucide-react'
+import { ArrowRight, Github, Linkedin, Mail, Code2, Shield, Zap, ChevronDown, Layers, Globe, Server, Download } from 'lucide-react'
 import { useEffect, useState } from 'react'
 
 const roles = ['Full-Stack Web Developer', 'Java & Spring Boot Engineer', 'Cybersecurity Analyst', 'Angular Developer', 'Security Enthusiast']
@@ -94,6 +94,10 @@ export default function Home() {
               <Mail size={18} />
               Get In Touch
             </Link>
+            <a href="/Yogesh_Botcha_Resume.pdf" download className="btn-secondary flex items-center justify-center gap-2 group">
+              <Download size={18} />
+              Download Resume
+            </a>
           </div>
 
           {/* Social Links */}
