@@ -23,7 +23,7 @@ const projects: Project[] = [
     description:
       'Designed and developed a full-stack website for bike and car service bookings for users unable to visit garages. Built with Java, Angular, HTML, CSS, and Spring Boot featuring a user-friendly interface, efficient scheduling, and streamlined booking systems.',
     technologies: ['Java', 'Angular', 'Spring Boot', 'HTML', 'CSS', 'REST APIs'],
-    liveLink: 'https://yogeshbotcha965.github.io/W/',
+    liveLink: 'https://yogeshbotcha965.github.io/W/-your',
     githubLink: 'https://github.com/YOGESHBOTCHA965/W',
     gradient: 'from-amber-500/20 to-orange-600/20',
     category: 'Web Development',
