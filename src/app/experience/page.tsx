@@ -76,16 +76,16 @@ const experiences: ExperienceItem[] = [
   {
     id: 5,
     company: 'Decathlon Sports India',
-    position: 'Marketing & Sales Associate',
+    position: 'Sport Player IT',
     location: 'Hyderabad, India',
     duration: '2022',
     type: 'Part-time',
     description: [
-      'Supported marketing and sales initiatives centered on customer acquisition and campaign execution in a B2C environment.',
-      'Contributed to in-store engagement strategies, driving foot traffic and improving customer conversion rates.',
-      'Gained hands-on experience in understanding how marketing technology and user experience influence lead generation and business growth.',
+      'Assisted in User Acceptance Testing (UAT) of retail management systems, identifying UI/UX bugs.',
+      'Utilized SQL for data validation and audits, ensuring data integrity across operations.',
+      'Worked with both retail customers (B2C) and business clients (B2B) in a high-volume sales environment.',
     ],
-    technologies: ['Marketing', 'Sales', 'Customer Acquisition', 'Campaign Execution'],
+    technologies: ['SQL', 'Java', 'Excel', 'HTML', 'CSS'],
   },
   {
     id: 6,
