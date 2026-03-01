@@ -57,6 +57,7 @@ const projects: Project[] = [
     description:
       'Created a responsive business website for a construction company featuring service listings, client inquiry forms, and dynamic content management. Emphasized performance, usability, and maintainability with clean, modern design.',
     technologies: ['HTML', 'CSS', 'JavaScript', 'Bootstrap', 'Responsive Design'],
+    liveLink: 'https://builder-company.vercel.app/',
     gradient: 'from-yellow-500/20 to-amber-600/20',
     category: 'Web Development',
     highlights: ['Responsive design', 'Client inquiry forms', 'Content management'],
