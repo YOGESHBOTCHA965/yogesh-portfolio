@@ -1,5 +1,9 @@
 # Yogesh's Professional Portfolio
 
+[![Deploy to GitHub Pages](https://github.com/YOGESHBOTCHA965/yogesh-portfolio/actions/workflows/deploy.yml/badge.svg)](https://github.com/YOGESHBOTCHA965/yogesh-portfolio/actions/workflows/deploy.yml)
+
+Live Website: https://yogeshbotcha965.github.io/yogesh-portfolio/
+
 A modern, responsive portfolio website built with **Next.js**, **React**, **TypeScript**, and **Tailwind CSS** to showcase your professional work, experience, and skills as a web developer.
 
 ## 🚀 Features
@@ -58,7 +62,7 @@ yogesh-portfolio/
 - **Styling**: Tailwind CSS
 - **Icons**: Lucide React
 - **Build**: npx create-next-app
-- **Hosting Ready**: Deploy to Vercel (recommended)
+- **Hosting**: GitHub Pages (auto deploy on push to `main`)
 
 ## 📦 Installation & Setup
 
@@ -84,7 +88,7 @@ yogesh-portfolio/
    ```
 
 4. **Open in browser**:
-   - Navigate to `http://localhost:3000`
+  - Navigate to `http://localhost:3000/yogesh-portfolio`
    - Your portfolio will load with hot-reload enabled
 
 ## ✏️ Customization Guide
