@@ -1,6 +1,7 @@
 'use client'
 
 import Link from 'next/link'
+import Image from 'next/image'
 import { ArrowRight, Github, Linkedin, Mail, Code2, Shield, Zap, ChevronDown, Layers, Globe, Server, Download } from 'lucide-react'
 import { useEffect, useState } from 'react'
 
@@ -43,81 +44,91 @@ export default function Home() {
     <div className="relative">
       {/* Hero Section */}
       <section className="min-h-screen flex flex-col justify-center items-center relative px-6 sm:px-8 pt-20">
-        <div className="absolute top-1/4 left-1/4 w-96 h-96 bg-cyan-500/10 rounded-full blur-[120px] pointer-events-none" />
-        <div className="absolute bottom-1/4 right-1/4 w-72 h-72 bg-violet-500/8 rounded-full blur-[100px] pointer-events-none" />
+        <div className="absolute top-1/4 left-1/4 w-96 h-96 bg-amber-500/10 rounded-full blur-[120px] pointer-events-none" />
+        <div className="absolute bottom-1/4 right-1/4 w-72 h-72 bg-amber-500/6 rounded-full blur-[100px] pointer-events-none" />
 
-        <div className="max-w-4xl mx-auto text-center relative z-10">
-          {/* Status badge */}
-          <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-cyan-500/10 border border-cyan-500/20 mb-8 animate-fade-in">
-            <span className="w-2 h-2 rounded-full bg-emerald-400 animate-pulse" />
-            <span className="text-cyan-300 text-sm font-medium">Available for opportunities</span>
-          </div>
+        <div className="max-w-5xl mx-auto text-center relative z-10">
+          <div className="hero-shell">
+            <div className="absolute left-6 top-6 h-24 w-24 rounded-full border border-white/10 bg-amber-500/15 blur-3xl" />
+            <div className="absolute bottom-6 right-6 h-28 w-28 rounded-full border border-amber-500/10 bg-amber-500/8 blur-3xl" />
+            <div className="relative z-10">
+              {/* Status badge */}
+              <div className="eyebrow mb-8 animate-fade-in">
+                <span className="w-2 h-2 rounded-full bg-emerald-400 animate-pulse" />
+                <span className="text-gray-100 text-sm font-medium">Available for product and engineering opportunities</span>
+              </div>
 
-          {/* Profile Image Placeholder */}
-          <div className="w-36 h-36 mx-auto mb-8 rounded-full bg-gradient-to-br from-cyan-400 to-violet-500 p-1 animate-fade-in">
-            <div className="w-full h-full rounded-full bg-primary flex items-center justify-center text-4xl font-bold text-cyan-400">
-              YB
+              {/* Profile Image */}
+              <div className="w-40 h-40 mx-auto mb-8 animate-fade-in relative">
+                <div className="absolute -inset-2 bg-black/30 blur-xl rounded-[1.35rem]" />
+                <div className="relative w-full h-full bg-[#1a232d] p-1.5 rounded-[1.35rem] border border-[#c7a56b]/45 shadow-[0_14px_36px_rgba(0,0,0,0.45)]">
+                  <Image 
+                    src={`${process.env.NEXT_PUBLIC_BASE_PATH}/Images/Yogesh.jpeg`}
+                    alt="Yogesh Botcha" 
+                    width={160}
+                    height={160}
+                    className="w-full h-full object-cover rounded-[1rem]"
+                  />
+                </div>
+              </div>
+
+              {/* Main heading */}
+              <h1 className="text-5xl sm:text-6xl lg:text-7xl font-extrabold leading-tight mb-6 animate-fade-up">
+                <span className="text-white">Hi, I&apos;m </span>
+                <span className="text-[#dec69a]">
+                  Yogesh Botcha
+                </span>
+              </h1>
+
+              {/* Typing effect */}
+              <div className="h-10 sm:h-12 flex items-center justify-center mb-8 animate-fade-up animation-delay-200">
+                <span className="text-xl sm:text-2xl text-gray-300 font-mono">
+                  {'> '}{typedText}
+                  <span className="inline-block w-0.5 h-6 bg-[#c7a56b] ml-1 animate-blink" />
+                </span>
+              </div>
+
+              {/* Bio */}
+              <p className="text-gray-300/90 text-base sm:text-lg max-w-3xl mx-auto mb-12 leading-relaxed animate-fade-up animation-delay-400">
+                I build secure, elegant digital products at the intersection of cybersecurity, modern web engineering, and thoughtful UX. From backend systems to polished interfaces, I focus on resilient experiences that feel intuitive and dependable.
+              </p>
+
+              {/* CTA Buttons */}
+              <div className="flex flex-col sm:flex-row gap-4 justify-center mb-16 animate-fade-up animation-delay-600">
+                <Link href="/projects" className="btn-primary flex items-center justify-center gap-2 group">
+                  View My Work
+                  <ArrowRight size={18} className="group-hover:translate-x-1 transition-transform" />
+                </Link>
+                <Link href="/contact" className="btn-secondary flex items-center justify-center gap-2">
+                  <Mail size={18} />
+                  Get In Touch
+                </Link>
+                <a href={`${process.env.NEXT_PUBLIC_BASE_PATH || ''}/Yogesh_Botcha_Resume.pdf`} download className="btn-secondary flex items-center justify-center gap-2 group">
+                  <Download size={18} />
+                  Download Resume
+                </a>
+              </div>
+
+              {/* Social Links */}
+              <div className="flex justify-center gap-3 animate-fade-up animation-delay-800">
+                {[
+                  { icon: <Github size={18} />, href: 'https://github.com/yogeshbotcha', label: 'GitHub' },
+                  { icon: <Linkedin size={18} />, href: 'https://linkedin.com/in/yogcha', label: 'LinkedIn' },
+                  { icon: <Mail size={18} />, href: 'mailto:yogeshbotcha@gmail.com', label: 'Email' },
+                ].map((social, idx) => (
+                  <a
+                    key={idx}
+                    href={social.href}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="soft-pill w-11 h-11"
+                    title={social.label}
+                  >
+                    {social.icon}
+                  </a>
+                ))}
+              </div>
             </div>
-          </div>
-
-          {/* Main heading */}
-          <h1 className="text-5xl sm:text-6xl lg:text-7xl font-extrabold leading-tight mb-6 animate-fade-up">
-            <span className="text-white">Hi, I&apos;m </span>
-            <span className="bg-gradient-to-r from-cyan-400 via-blue-400 to-violet-400 bg-clip-text text-transparent">
-              Yogesh Botcha
-            </span>
-          </h1>
-
-          {/* Typing effect */}
-          <div className="h-10 sm:h-12 flex items-center justify-center mb-8 animate-fade-up animation-delay-200">
-            <span className="text-xl sm:text-2xl text-gray-400 font-mono">
-              {'> '}{typedText}
-              <span className="inline-block w-0.5 h-6 bg-cyan-400 ml-1 animate-blink" />
-            </span>
-          </div>
-
-          {/* Bio */}
-          <p className="text-gray-400 text-base sm:text-lg max-w-2xl mx-auto mb-12 leading-relaxed animate-fade-up animation-delay-400">
-            M.S. Cybersecurity graduate student at Columbus State University with hands-on experience in
-            full-stack web development, Java/Spring Boot/Angular applications, risk assessment, security monitoring,
-            and modern frontend engineering. Passionate about building secure, scalable web applications
-            while leveraging cybersecurity expertise to deliver resilient solutions.
-          </p>
-
-          {/* CTA Buttons */}
-          <div className="flex flex-col sm:flex-row gap-4 justify-center mb-16 animate-fade-up animation-delay-600">
-            <Link href="/projects" className="btn-primary flex items-center justify-center gap-2 group">
-              View My Work
-              <ArrowRight size={18} className="group-hover:translate-x-1 transition-transform" />
-            </Link>
-            <Link href="/contact" className="btn-secondary flex items-center justify-center gap-2">
-              <Mail size={18} />
-              Get In Touch
-            </Link>
-            <a href={`${process.env.NEXT_PUBLIC_BASE_PATH || ''}/Yogesh_Botcha_Resume.pdf`} download className="btn-secondary flex items-center justify-center gap-2 group">
-              <Download size={18} />
-              Download Resume
-            </a>
-          </div>
-
-          {/* Social Links */}
-          <div className="flex justify-center gap-3 animate-fade-up animation-delay-800">
-            {[
-              { icon: <Github size={18} />, href: 'https://github.com/yogeshbotcha', label: 'GitHub' },
-              { icon: <Linkedin size={18} />, href: 'https://linkedin.com/in/yogcha', label: 'LinkedIn' },
-              { icon: <Mail size={18} />, href: 'mailto:yogeshbotcha@gmail.com', label: 'Email' },
-            ].map((social, idx) => (
-              <a
-                key={idx}
-                href={social.href}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="w-10 h-10 rounded-xl bg-white/[0.04] border border-white/[0.06] flex items-center justify-center text-gray-500 hover:text-cyan-400 hover:border-cyan-500/30 hover:bg-cyan-500/10 transition-all duration-300 hover:-translate-y-0.5"
-                title={social.label}
-              >
-                {social.icon}
-              </a>
-            ))}
           </div>
         </div>
 
@@ -167,7 +178,7 @@ export default function Home() {
               key={idx}
               className="card-glass text-center py-8 group hover:scale-[1.02] transition-transform duration-300"
             >
-              <div className="inline-flex items-center justify-center w-10 h-10 rounded-lg bg-cyan-500/10 text-cyan-400 mb-4 group-hover:scale-110 transition-transform">
+              <div className="inline-flex items-center justify-center w-10 h-10 rounded-lg bg-white/5 text-[#c7a56b] mb-4 group-hover:scale-110 transition-transform">
                 {stat.icon}
               </div>
               <p className="text-3xl sm:text-4xl font-extrabold gradient-text mb-2">{stat.value}</p>
