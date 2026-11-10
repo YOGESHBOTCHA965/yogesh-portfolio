@@ -1,7 +1,8 @@
 'use client'
 
 import { useState } from 'react'
-import { Mail, Phone, MapPin, Github, Linkedin, Send, CheckCircle, Clock, ArrowUpRight, Shield } from 'lucide-react'
+import { Mail, Phone, MapPin, Github, Linkedin, Send, CheckCircle, ArrowUpRight, Shield, Download } from 'lucide-react'
+import { resumeUrl } from '@/data/site'
 
 export default function ContactPage() {
   const [formData, setFormData] = useState({
@@ -39,225 +40,166 @@ export default function ContactPage() {
   }
 
   const contactInfo = [
-    {
-      icon: <Mail size={20} />,
-      label: 'Email',
-      value: 'yogeshbotcha@gmail.com',
-      href: 'mailto:yogeshbotcha@gmail.com',
-    },
-    {
-      icon: <Phone size={20} />,
-      label: 'Phone',
-      value: '+1 (706) 912-0229',
-      href: 'tel:+17069120229',
-    },
-    {
-      icon: <MapPin size={20} />,
-      label: 'Location',
-      value: 'Columbus, GA, USA',
-      href: '#',
-    },
+    { icon: <Mail size={16} strokeWidth={1.5} />, label: 'Email', value: 'yogeshbotcha@gmail.com', href: 'mailto:yogeshbotcha@gmail.com' },
+    { icon: <Phone size={16} strokeWidth={1.5} />, label: 'Phone', value: '+1 (706) 912-0229', href: 'tel:+17069120229' },
+    { icon: <MapPin size={16} strokeWidth={1.5} />, label: 'Location', value: 'Columbus, GA, USA' },
   ]
 
   const socialLinks = [
-    { icon: <Github size={18} />, label: 'GitHub', href: 'https://github.com/yogeshbotcha', handle: '@yogeshbotcha' },
-    { icon: <Linkedin size={18} />, label: 'LinkedIn', href: 'https://linkedin.com/in/yogcha', handle: '/in/yogcha' },
-    { icon: <Shield size={18} />, label: 'Cyber Skyline', href: 'https://cyberskyline.com/report/85UBQ8522G95', handle: 'NCL Report' },
+    { icon: <Github size={16} strokeWidth={1.5} />, label: 'GitHub', href: 'https://github.com/yogeshbotcha', handle: '@yogeshbotcha' },
+    { icon: <Linkedin size={16} strokeWidth={1.5} />, label: 'LinkedIn', href: 'https://linkedin.com/in/yogcha', handle: '/in/yogcha' },
+    { icon: <Shield size={16} strokeWidth={1.5} />, label: 'Cyber Skyline', href: 'https://cyberskyline.com/report/85UBQ8522G95', handle: 'NCL report' },
   ]
 
+  const targetRoles = ['Software Development Engineer', 'Software Engineer', 'Full-Stack Developer', 'Backend Engineer', 'Java Developer']
+
+  const fields = [
+    { name: 'name', label: 'Name', type: 'text', placeholder: 'Your name', autoComplete: 'name' },
+    { name: 'email', label: 'Email', type: 'email', placeholder: 'you@company.com', autoComplete: 'email' },
+  ] as const
+
   return (
-    <div className="pt-20">
-      {/* Page Header */}
-      <div className="page-header">
-        <div className="absolute top-0 left-1/2 -translate-x-1/2 w-96 h-48 bg-cyan-500/8 rounded-full blur-[100px] pointer-events-none" />
-        <div className="relative z-10 section-container">
-          <p className="text-cyan-400 text-sm font-mono tracking-wider mb-4 uppercase">Connect</p>
-          <h1 className="section-title">Get In Touch</h1>
-          <div className="line-accent max-w-xs mx-auto my-6" />
-          <p className="section-subtitle">
-            Interested in web development or cybersecurity opportunities? I would love to hear from you.
-            Drop me a message and I will get back to you promptly.
+    <>
+      <header className="page-head">
+        <span className="path">~/contact</span>
+        <h1 className="h-page">Get in touch</h1>
+        <p className="lede">
+          Hiring a software engineer? Send a message and I&apos;ll usually reply within 24 hours.
+        </p>
+      </header>
+
+      <div className="container-page grid grid-cols-1 lg:grid-cols-[1fr_1.5fr] gap-8 lg:gap-12">
+        <aside className="flex flex-col gap-10">
+          <p className="flex items-start gap-2 text-sm text-fg-2">
+            <span className="w-1.5 h-1.5 rounded-full bg-positive mt-[7px] shrink-0" />
+            Open to full-time software development engineer roles. Based in Columbus, GA and open to
+            relocation or remote work.
           </p>
-        </div>
-      </div>
 
-      <div className="section-container pt-0">
-        <div className="grid grid-cols-1 lg:grid-cols-5 gap-8 mb-16">
-          {/* Contact Info Sidebar */}
-          <div className="lg:col-span-2 space-y-6">
-            {/* Contact Cards */}
-            <div className="space-y-3">
-              {contactInfo.map((info, idx) => (
-                <a
-                  key={idx}
-                  href={info.href}
-                  className="card-glass flex items-center gap-4 group p-5 hover:border-cyan-500/20"
-                >
-                  <div className="w-10 h-10 rounded-xl bg-cyan-500/10 flex items-center justify-center text-cyan-400 flex-shrink-0 group-hover:scale-110 transition-transform duration-300">
-                    {info.icon}
-                  </div>
-                  <div className="min-w-0">
-                    <p className="text-gray-600 text-xs uppercase tracking-wider font-medium">{info.label}</p>
-                    <p className="text-white text-sm font-medium truncate">{info.value}</p>
-                  </div>
-                </a>
-              ))}
-            </div>
+          <a href={resumeUrl} target="_blank" rel="noopener noreferrer" className="btn-secondary self-start -mt-4">
+            <Download size={16} strokeWidth={1.5} />
+            Resume (PDF)
+          </a>
 
-            {/* Social Links */}
-            <div className="card-glass">
-              <h3 className="text-sm font-semibold text-white mb-4 flex items-center gap-2">
-                <span className="w-1 h-1 rounded-full bg-cyan-400" />
-                Social Profiles
-              </h3>
-              <div className="space-y-2.5">
-                {socialLinks.map((link, idx) => (
+          <ul className="panel divided">
+            {contactInfo.map((info) => {
+              const body = (
+                <>
+                  <span className="text-fg-3 w-4 shrink-0">{info.icon}</span>
+                  <span className="text-sm text-fg-3 w-20 shrink-0">{info.label}</span>
+                  <span className="text-sm text-fg truncate">{info.value}</span>
+                </>
+              )
+              return (
+                <li key={info.label}>
+                  {info.href ? (
+                    <a href={info.href} className="flex items-center gap-3 px-5 h-12 hover:bg-ink-800/60 transition-colors duration-150 ease-out">
+                      {body}
+                    </a>
+                  ) : (
+                    <div className="flex items-center gap-3 px-5 h-12">{body}</div>
+                  )}
+                </li>
+              )
+            })}
+          </ul>
+
+          <div>
+            <h2 className="text-sm text-fg-3 mb-3">Profiles</h2>
+            <ul className="flex flex-col gap-1 -mx-3">
+              {socialLinks.map((link) => (
+                <li key={link.label}>
                   <a
-                    key={idx}
                     href={link.href}
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="flex items-center gap-3 p-2.5 rounded-xl hover:bg-white/[0.04] transition-all duration-300 group"
+                    className="group flex items-center gap-3 px-3 h-10 rounded-lg hover:bg-ink-800 transition-colors duration-150 ease-out"
                   >
-                    <div className="w-8 h-8 rounded-lg bg-white/[0.04] border border-white/[0.06] flex items-center justify-center text-gray-500 group-hover:text-cyan-400 group-hover:border-cyan-500/30 transition-all">
-                      {link.icon}
-                    </div>
-                    <div className="flex-1">
-                      <p className="text-sm text-gray-300 font-medium">{link.label}</p>
-                      <p className="text-xs text-gray-600">{link.handle}</p>
-                    </div>
-                    <ArrowUpRight size={14} className="text-gray-700 group-hover:text-cyan-400 transition-colors" />
+                    <span className="text-fg-3 w-4">{link.icon}</span>
+                    <span className="text-sm text-fg">{link.label}</span>
+                    <span className="meta">{link.handle}</span>
+                    <ArrowUpRight size={16} strokeWidth={1.5} className="ml-auto text-fg-3 group-hover:text-fg transition-colors duration-150 ease-out" />
                   </a>
-                ))}
-              </div>
-            </div>
-
-            {/* Availability */}
-            <div className="card-glass">
-              <div className="flex items-center gap-2 mb-2">
-                <span className="w-2 h-2 rounded-full bg-emerald-400 animate-pulse" />
-                <span className="text-sm font-semibold text-white">Available for work</span>
-              </div>
-              <p className="text-gray-500 text-xs leading-relaxed">
-                Currently open to full-time positions in Web Development and Cybersecurity.
-                Based in Columbus, GA. Open to relocation and remote opportunities.
-                I typically respond within 24 hours.
-              </p>
-            </div>
-
-            {/* Target Roles */}
-            <div className="card-glass">
-              <h3 className="text-sm font-semibold text-white mb-3 flex items-center gap-2">
-                <span className="w-1 h-1 rounded-full bg-violet-400" />
-                Target Roles
-              </h3>
-              <div className="flex flex-wrap gap-2">
-                {['Web Developer', 'Cybersecurity Analyst', 'Full-Stack Developer', 'Security Engineer', 'SOC Analyst', 'IT Risk Analyst'].map((role, idx) => (
-                  <span key={idx} className="tag text-[11px]">{role}</span>
-                ))}
-              </div>
-            </div>
+                </li>
+              ))}
+            </ul>
           </div>
 
-          {/* Contact Form */}
-          <div className="lg:col-span-3">
-            <div className="card p-8">
-              <h2 className="text-xl font-bold text-white mb-1">Send a Message</h2>
-              <p className="text-gray-500 text-sm mb-8">Fill out the form below and I will be in touch.</p>
+          <div>
+            <h2 className="text-sm text-fg-3 mb-3">Target roles</h2>
+            <div className="flex flex-wrap gap-2">
+              {targetRoles.map((role) => (
+                <span key={role} className="tag">{role}</span>
+              ))}
+            </div>
+          </div>
+        </aside>
 
-              {submitted && (
-                <div className="mb-6 p-4 bg-emerald-500/10 border border-emerald-500/20 rounded-xl flex items-center gap-3">
-                  <CheckCircle size={18} className="text-emerald-400 flex-shrink-0" />
-                  <p className="text-emerald-400 text-sm font-medium">Message sent successfully! I will get back to you soon.</p>
-                </div>
-              )}
+        <div className="panel p-6 sm:p-8 self-start">
+          <h2 className="h-section">Send a message</h2>
 
-              <form onSubmit={handleSubmit} className="space-y-5">
-                <div className="grid grid-cols-1 sm:grid-cols-2 gap-5">
-                  <div>
-                    <label className="block text-xs font-semibold text-gray-400 uppercase tracking-wider mb-2">
-                      Full Name
-                    </label>
-                    <input
-                      type="text"
-                      name="name"
-                      value={formData.name}
-                      onChange={handleChange}
-                      required
-                      className="input-field"
-                      placeholder="Your name"
-                    />
-                  </div>
-                  <div>
-                    <label className="block text-xs font-semibold text-gray-400 uppercase tracking-wider mb-2">
-                      Email Address
-                    </label>
-                    <input
-                      type="email"
-                      name="email"
-                      value={formData.email}
-                      onChange={handleChange}
-                      required
-                      className="input-field"
-                      placeholder="your@email.com"
-                    />
-                  </div>
-                </div>
+          {submitted && (
+            <p role="status" className="mt-6 px-4 h-11 flex items-center gap-2 rounded-lg bg-positive/10 border border-positive/20 text-sm text-positive">
+              <CheckCircle size={16} strokeWidth={1.5} />
+              Message sent. I&apos;ll reply within 24 hours
+            </p>
+          )}
 
-                <div>
-                  <label className="block text-xs font-semibold text-gray-400 uppercase tracking-wider mb-2">
-                    Subject
-                  </label>
+          <form onSubmit={handleSubmit} className="mt-6 flex flex-col gap-5">
+            <div className="grid grid-cols-1 sm:grid-cols-2 gap-5">
+              {fields.map((field) => (
+                <div key={field.name}>
+                  <label htmlFor={field.name} className="label">{field.label}</label>
                   <input
-                    type="text"
-                    name="subject"
-                    value={formData.subject}
+                    id={field.name}
+                    type={field.type}
+                    name={field.name}
+                    value={formData[field.name]}
                     onChange={handleChange}
                     required
+                    autoComplete={field.autoComplete}
                     className="input-field"
-                    placeholder="Job opportunity, collaboration, etc."
+                    placeholder={field.placeholder}
                   />
                 </div>
-
-                <div>
-                  <label className="block text-xs font-semibold text-gray-400 uppercase tracking-wider mb-2">
-                    Message
-                  </label>
-                  <textarea
-                    name="message"
-                    value={formData.message}
-                    onChange={handleChange}
-                    required
-                    rows={5}
-                    className="input-field resize-none"
-                    placeholder="Tell me about your project or opportunity..."
-                  ></textarea>
-                </div>
-
-                <button
-                  type="submit"
-                  className="btn-primary w-full flex items-center justify-center gap-2 group"
-                >
-                  <Send size={16} className="group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-transform" />
-                  Send Message
-                </button>
-              </form>
+              ))}
             </div>
-          </div>
-        </div>
 
-        {/* Response Time */}
-        <div className="card-glass text-center py-10 px-8">
-          <div className="w-10 h-10 rounded-xl bg-cyan-500/10 flex items-center justify-center text-cyan-400 mx-auto mb-4">
-            <Clock size={20} />
-          </div>
-          <h2 className="text-lg font-bold text-white mb-2">Quick Response Guaranteed</h2>
-          <p className="text-gray-500 text-sm max-w-md mx-auto">
-            Whether you have a quick question, need consultation, or want to discuss a web development
-            or cybersecurity opportunity, feel free to reach out. I typically respond within 24 hours.
-          </p>
+            <div>
+              <label htmlFor="subject" className="label">Subject</label>
+              <input
+                id="subject"
+                type="text"
+                name="subject"
+                value={formData.subject}
+                onChange={handleChange}
+                required
+                className="input-field"
+                placeholder="Job opportunity, collaboration"
+              />
+            </div>
+
+            <div>
+              <label htmlFor="message" className="label">Message</label>
+              <textarea
+                id="message"
+                name="message"
+                value={formData.message}
+                onChange={handleChange}
+                required
+                rows={6}
+                className="input-field h-auto py-3 resize-none"
+                placeholder="Tell me about the role or project"
+              />
+            </div>
+
+            <button type="submit" className="btn-primary w-full sm:w-auto sm:self-start">
+              <Send size={16} strokeWidth={1.5} />
+              Send message
+            </button>
+          </form>
         </div>
       </div>
-    </div>
+    </>
   )
 }

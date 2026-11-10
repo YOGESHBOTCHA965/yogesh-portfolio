@@ -1,282 +1,262 @@
-'use client'
-
 import Link from 'next/link'
 import Image from 'next/image'
-import { ArrowRight, Github, Linkedin, Mail, Code2, Shield, Zap, ChevronDown, Layers, Globe, Server, Download } from 'lucide-react'
-import { useEffect, useState } from 'react'
+import { ArrowRight, ArrowUpRight, Download } from 'lucide-react'
+import { nclCategories, nclReportUrl, nclSummary } from '@/data/ncl'
+import { basePath, resumeUrl } from '@/data/site'
 
-const roles = ['Full-Stack Web Developer', 'Java & Spring Boot Engineer', 'Cybersecurity Analyst', 'Angular Developer', 'Security Enthusiast']
+const stats = [
+  { value: '1,000+', label: 'Users on apps I shipped' },
+  { value: '5+', label: 'Web apps built' },
+  { value: '3+', label: 'Years of experience' },
+  { value: '99th', label: 'NCL percentile' },
+]
 
-function useTypingEffect(words: string[], typingSpeed = 80, deletingSpeed = 50, pauseTime = 2000) {
-  const [text, setText] = useState('')
-  const [wordIndex, setWordIndex] = useState(0)
-  const [isDeleting, setIsDeleting] = useState(false)
+const services = [
+  {
+    title: 'Full-stack development',
+    description: 'Web and hybrid mobile applications end-to-end with Java, Spring Boot, React and Angular, from REST APIs and MySQL schemas to responsive interfaces.',
+    tags: ['Java', 'Spring Boot', 'React', 'Angular', 'TypeScript'],
+  },
+  {
+    title: 'Backend and APIs',
+    description: 'Microservices and REST APIs with Spring Boot and Hibernate, OAuth 2.0 and JWT authentication, and performance work on systems serving more than 1,000 users.',
+    tags: ['Spring Boot', 'Hibernate', 'OAuth 2.0', 'JWT', 'PostgreSQL'],
+  },
+  {
+    title: 'Cloud infrastructure',
+    description: 'Moving applications from local environments to AWS, with RDS for data, load balancing and auto scaling for availability during peak traffic.',
+    tags: ['AWS', 'EC2', 'RDS', 'Lambda', 'SQS'],
+  },
+  {
+    title: 'Applied AI',
+    description: 'AI agents, LLM fine-tuning, tokenization and RAG pipelines, and the data preparation that makes model training work.',
+    tags: ['Python', 'LLMs', 'RAG', 'pandas', 'NumPy'],
+  },
+  {
+    title: 'Secure by default',
+    description: 'A cybersecurity master’s and research on AI agent security mean authentication, least privilege and attack surface are part of the design, not an afterthought.',
+    tags: ['IAM', 'Threat modeling', 'Splunk', 'ELK Stack'],
+  },
+]
 
-  useEffect(() => {
-    const currentWord = words[wordIndex]
-    let timeout: NodeJS.Timeout
+const featured = [
+  {
+    title: 'WorkOnWheels (WOW)',
+    kind: 'Personal project',
+    description: 'Re-architected a Java, Spring Boot and Angular booking system and migrated it to AWS, with RDS, auto scaling and load balancing for peak booking periods.',
+    tags: ['Spring Boot', 'Angular', 'AWS'],
+  },
+  {
+    title: 'AI Voice Agent',
+    kind: 'Academic project',
+    description: 'Real-time voice agent combining speech recognition, language generation and text-to-speech with custom voice cloning.',
+    tags: ['Python', 'LLMs', 'TTS'],
+  },
+  {
+    title: 'Diabetes Risk Prediction',
+    kind: 'Academic project',
+    description: 'Random Forest model on a Kaggle dataset, using SMOTE to correct class imbalance for unbiased classification of high-risk patients.',
+    tags: ['Python', 'Random Forest', 'SMOTE'],
+  },
+]
 
-    if (!isDeleting && text === currentWord) {
-      timeout = setTimeout(() => setIsDeleting(true), pauseTime)
-    } else if (isDeleting && text === '') {
-      setIsDeleting(false)
-      setWordIndex((prev) => (prev + 1) % words.length)
-    } else {
-      timeout = setTimeout(() => {
-        setText(
-          isDeleting
-            ? currentWord.substring(0, text.length - 1)
-            : currentWord.substring(0, text.length + 1)
-        )
-      }, isDeleting ? deletingSpeed : typingSpeed)
-    }
-
-    return () => clearTimeout(timeout)
-  }, [text, wordIndex, isDeleting, words, typingSpeed, deletingSpeed, pauseTime])
-
-  return text
-}
+const topCategories = new Set(['Forensics', 'Open Source Intelligence', 'Cryptography'])
 
 export default function Home() {
-  const typedText = useTypingEffect(roles)
-
   return (
-    <div className="relative">
-      {/* Hero Section */}
-      <section className="min-h-screen flex flex-col justify-center items-center relative px-6 sm:px-8 pt-20">
-        <div className="absolute top-1/4 left-1/4 w-96 h-96 bg-amber-500/10 rounded-full blur-[120px] pointer-events-none" />
-        <div className="absolute bottom-1/4 right-1/4 w-72 h-72 bg-amber-500/6 rounded-full blur-[100px] pointer-events-none" />
+    <>
+      {/* Hero */}
+      <section className="container-page pt-28 pb-16 sm:pt-32 lg:min-h-[min(100svh,880px)] lg:flex lg:items-center">
+        <div className="grid grid-cols-1 lg:grid-cols-[1.25fr_1fr] gap-12 lg:gap-16 items-center w-full">
+          <div className="animate-rise">
+            <p className="flex items-center gap-2 text-sm text-fg-2 mb-8">
+              <span className="w-1.5 h-1.5 rounded-full bg-positive" />
+              Open to software development engineer roles
+            </p>
 
-        <div className="max-w-5xl mx-auto text-center relative z-10">
-          <div className="hero-shell">
-            <div className="absolute left-6 top-6 h-24 w-24 rounded-full border border-white/10 bg-amber-500/15 blur-3xl" />
-            <div className="absolute bottom-6 right-6 h-28 w-28 rounded-full border border-amber-500/10 bg-amber-500/8 blur-3xl" />
-            <div className="relative z-10">
-              {/* Status badge */}
-              <div className="eyebrow mb-8 animate-fade-in">
-                <span className="w-2 h-2 rounded-full bg-emerald-400 animate-pulse" />
-                <span className="text-gray-100 text-sm font-medium">Available for product and engineering opportunities</span>
-              </div>
+            <h1 className="text-4xl sm:text-5xl lg:text-[64px] font-medium leading-[1.05] tracking-[-0.03em] text-fg max-w-[15ch]">
+              Software developer building secure, full-stack and AI applications
+            </h1>
 
-              {/* Profile Image */}
-              <div className="w-40 h-40 mx-auto mb-8 animate-fade-in relative">
-                <div className="absolute -inset-2 bg-black/30 blur-xl rounded-[1.35rem]" />
-                <div className="relative w-full h-full bg-[#1a232d] p-1.5 rounded-[1.35rem] border border-[#c7a56b]/45 shadow-[0_14px_36px_rgba(0,0,0,0.45)]">
-                  <Image 
-                    src={`${process.env.NEXT_PUBLIC_BASE_PATH}/Images/Yogesh.jpeg`}
-                    alt="Yogesh Botcha" 
-                    width={160}
-                    height={160}
-                    className="w-full h-full object-cover rounded-[1rem]"
-                  />
-                </div>
-              </div>
+            <p className="text-lg leading-7 text-fg-2 max-w-xl mt-6">
+              I&apos;m Yogesh Botcha. I build with Java, Spring Boot, React and Angular, deploy on AWS and
+              integrate LLMs into real services. I finished my M.S. at Columbus State University in May 2026
+              and now develop AI agents there as a research intern.
+            </p>
 
-              {/* Main heading */}
-              <h1 className="text-5xl sm:text-6xl lg:text-7xl font-extrabold leading-tight mb-6 animate-fade-up">
-                <span className="text-white">Hi, I&apos;m </span>
-                <span className="text-[#dec69a]">
-                  Yogesh Botcha
-                </span>
-              </h1>
-
-              {/* Typing effect */}
-              <div className="h-10 sm:h-12 flex items-center justify-center mb-8 animate-fade-up animation-delay-200">
-                <span className="text-xl sm:text-2xl text-gray-300 font-mono">
-                  {'> '}{typedText}
-                  <span className="inline-block w-0.5 h-6 bg-[#c7a56b] ml-1 animate-blink" />
-                </span>
-              </div>
-
-              {/* Bio */}
-              <p className="text-gray-300/90 text-base sm:text-lg max-w-3xl mx-auto mb-12 leading-relaxed animate-fade-up animation-delay-400">
-                I build secure, elegant digital products at the intersection of cybersecurity, modern web engineering, and thoughtful UX. From backend systems to polished interfaces, I focus on resilient experiences that feel intuitive and dependable.
-              </p>
-
-              {/* CTA Buttons */}
-              <div className="flex flex-col sm:flex-row gap-4 justify-center mb-16 animate-fade-up animation-delay-600">
-                <Link href="/projects" className="btn-primary flex items-center justify-center gap-2 group">
-                  View My Work
-                  <ArrowRight size={18} className="group-hover:translate-x-1 transition-transform" />
-                </Link>
-                <Link href="/contact" className="btn-secondary flex items-center justify-center gap-2">
-                  <Mail size={18} />
-                  Get In Touch
-                </Link>
-                <a href={`${process.env.NEXT_PUBLIC_BASE_PATH || ''}/Yogesh_Botcha_Resume.pdf`} download className="btn-secondary flex items-center justify-center gap-2 group">
-                  <Download size={18} />
-                  Download Resume
-                </a>
-              </div>
-
-              {/* Social Links */}
-              <div className="flex justify-center gap-3 animate-fade-up animation-delay-800">
-                {[
-                  { icon: <Github size={18} />, href: 'https://github.com/yogeshbotcha', label: 'GitHub' },
-                  { icon: <Linkedin size={18} />, href: 'https://linkedin.com/in/yogcha', label: 'LinkedIn' },
-                  { icon: <Mail size={18} />, href: 'mailto:yogeshbotcha@gmail.com', label: 'Email' },
-                ].map((social, idx) => (
-                  <a
-                    key={idx}
-                    href={social.href}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="soft-pill w-11 h-11"
-                    title={social.label}
-                  >
-                    {social.icon}
-                  </a>
-                ))}
-              </div>
+            <div className="flex flex-col sm:flex-row gap-3 mt-10">
+              <Link href="/projects" className="btn-primary">
+                View projects
+                <ArrowRight size={16} strokeWidth={1.5} />
+              </Link>
+              <a href={resumeUrl} target="_blank" rel="noopener noreferrer" className="btn-secondary">
+                <Download size={16} strokeWidth={1.5} />
+                Resume
+              </a>
             </div>
           </div>
-        </div>
 
-        {/* Scroll indicator */}
-        <div className="absolute bottom-8 left-1/2 -translate-x-1/2 animate-float">
-          <ChevronDown size={20} className="text-gray-600" />
+          <figure className="animate-rise [animation-delay:60ms] w-full max-w-sm mx-auto lg:max-w-none">
+            <div className="relative aspect-[4/5] overflow-hidden rounded-2xl border border-line bg-ink-850">
+              <Image
+                src={`${basePath}/Images/Yogesh.jpeg`}
+                alt="Portrait of Yogesh Botcha"
+                fill
+                priority
+                sizes="(min-width: 1024px) 420px, 384px"
+                className="object-cover"
+              />
+            </div>
+            <figcaption className="meta mt-3 flex justify-between">
+              <span>Columbus, GA</span>
+              <span>AI Research Intern, CSU</span>
+            </figcaption>
+          </figure>
         </div>
       </section>
 
-      {/* NCL Achievement Banner */}
-      <section className="section-container pb-8">
-        <div className="card-glass relative overflow-hidden">
-          <div className="absolute top-0 right-0 w-48 h-48 bg-amber-500/10 rounded-full blur-[80px] pointer-events-none" />
-          <div className="relative z-10 flex flex-col md:flex-row items-center gap-6 p-4">
-            <div className="flex-shrink-0">
-              <div className="w-20 h-20 rounded-2xl bg-gradient-to-br from-amber-400 to-orange-500 flex items-center justify-center">
-                <Shield size={36} className="text-white" />
+      {/* Stats */}
+      <section className="container-page pb-8">
+        <dl className="grid grid-cols-2 lg:grid-cols-4 border-y border-line">
+          {stats.map((stat, idx) => (
+            <div
+              key={stat.label}
+              className={`py-6 px-4 sm:px-6 ${idx % 2 === 1 ? 'border-l border-line' : ''} ${idx >= 2 ? 'border-t lg:border-t-0 border-line' : ''} ${idx === 2 ? 'lg:border-l' : ''}`}
+            >
+              <dt className="text-sm text-fg-2">{stat.label}</dt>
+              <dd className="text-3xl font-medium text-fg tabular-nums mt-2">{stat.value}</dd>
+            </div>
+          ))}
+        </dl>
+      </section>
+
+      {/* What I do */}
+      <section className="section">
+        <div className="grid grid-cols-1 lg:grid-cols-[1fr_2fr] gap-8 lg:gap-16">
+          <div>
+            <h2 className="h-section">What I build</h2>
+            <p className="text-fg-2 mt-4 max-w-sm">
+              Production web applications and the services behind them, with security and AI as part of
+              the engineering rather than separate specialties.
+            </p>
+          </div>
+
+          <ul className="divided border-t border-line">
+            {services.map((service) => (
+              <li key={service.title} className="py-6 grid grid-cols-1 sm:grid-cols-[200px_1fr] gap-2 sm:gap-8">
+                <h3 className="text-base font-medium text-fg">{service.title}</h3>
+                <div>
+                  <p className="text-sm leading-6 text-fg-2">{service.description}</p>
+                  <div className="flex flex-wrap gap-2 mt-4">
+                    {service.tags.map((tag) => (
+                      <span key={tag} className="tag">{tag}</span>
+                    ))}
+                  </div>
+                </div>
+              </li>
+            ))}
+          </ul>
+        </div>
+      </section>
+
+      {/* Selected projects */}
+      <section className="container-page pb-16 sm:pb-24">
+        <div className="flex items-end justify-between gap-4 mb-6">
+          <h2 className="h-section">Selected projects</h2>
+          <Link href="/projects" className="link text-sm inline-flex items-center gap-1">
+            All projects
+            <ArrowRight size={16} strokeWidth={1.5} />
+          </Link>
+        </div>
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
+          {featured.map((project) => (
+            <article key={project.title} className="panel p-6 flex flex-col">
+              <span className="meta">{project.kind}</span>
+              <h3 className="text-lg font-medium text-fg mt-3">{project.title}</h3>
+              <p className="text-sm leading-6 text-fg-2 mt-3 flex-grow">{project.description}</p>
+              <div className="flex flex-wrap gap-2 mt-6">
+                {project.tags.map((tag) => (
+                  <span key={tag} className="tag">{tag}</span>
+                ))}
               </div>
-            </div>
-            <div className="flex-1 text-center md:text-left">
-              <p className="text-amber-400 text-xs font-mono tracking-wider uppercase mb-1">National Cyber League - Fall 2025 Team Game</p>
-              <h3 className="text-2xl font-bold text-white mb-1">Ranked 67th out of 4,214 - 99th Percentile</h3>
-              <p className="text-gray-400 text-sm">Top categories: Forensics (99th), OSINT (99th), Cryptography (98th) - Team ACM @ CSU</p>
-            </div>
+            </article>
+          ))}
+        </div>
+      </section>
+
+      {/* NCL report */}
+      <section className="container-page pb-16">
+        <div className="panel p-6 sm:p-8 grid grid-cols-1 lg:grid-cols-[1fr_1.4fr] gap-10">
+          <div className="flex flex-col">
+            <p className="meta">National Cyber League · Fall 2025 team game</p>
+            <p className="mt-6 text-fg tabular-nums">
+              <span className="text-6xl font-medium tracking-[-0.03em] text-accent">{nclSummary.rank}th</span>
+              <span className="text-xl text-fg-2 ml-2">of {nclSummary.teams}</span>
+            </p>
+            <p className="text-fg-2 mt-3">
+              {nclSummary.percentile} percentile with Team ACM @ CSU. Top categories were Forensics, OSINT and
+              Cryptography.
+            </p>
             <a
-              href="https://cyberskyline.com/report/85UBQ8522G95"
+              href={nclReportUrl}
               target="_blank"
               rel="noopener noreferrer"
-              className="btn-secondary text-sm px-5 py-2.5 flex-shrink-0"
+              className="link text-sm inline-flex items-center gap-1 mt-6 lg:mt-auto lg:pt-6 self-start"
             >
-              Verify Report
+              Verify on Cyber Skyline
+              <ArrowUpRight size={16} strokeWidth={1.5} />
+            </a>
+          </div>
+
+          <div>
+            <div className="flex justify-between meta mb-4">
+              <span>Category</span>
+              <span>Points scored</span>
+            </div>
+            <ul className="flex flex-col gap-3">
+              {nclCategories.map((cat) => {
+                const lead = topCategories.has(cat.name)
+                return (
+                  <li key={cat.name} className="grid grid-cols-[1fr_auto] gap-x-4 gap-y-1.5 items-baseline">
+                    <span className={`text-sm ${lead ? 'text-fg' : 'text-fg-2'}`}>{cat.name}</span>
+                    <span className="meta">
+                      {cat.score}/{cat.max}
+                    </span>
+                    <div className="col-span-2 h-1 rounded-full bg-ink-800 overflow-hidden">
+                      <div
+                        className={`h-full rounded-full ${lead ? 'bg-accent' : 'bg-fg-3/60'}`}
+                        style={{ width: `${(cat.score / cat.max) * 100}%` }}
+                      />
+                    </div>
+                  </li>
+                )
+              })}
+            </ul>
+          </div>
+        </div>
+      </section>
+
+      {/* CTA */}
+      <section className="container-page pb-8">
+        <div className="panel p-8 sm:p-10 flex flex-col md:flex-row md:items-center md:justify-between gap-8">
+          <div>
+            <h2 className="h-section">Hiring a software engineer?</h2>
+            <p className="text-fg-2 mt-3 max-w-lg">
+              I&apos;m looking for full-time software development roles, based in Columbus, GA and open to
+              relocation or remote work.
+            </p>
+          </div>
+          <div className="flex flex-col sm:flex-row gap-3 shrink-0">
+            <Link href="/contact" className="btn-primary">
+              Contact me
+              <ArrowRight size={16} strokeWidth={1.5} />
+            </Link>
+            <a href={resumeUrl} target="_blank" rel="noopener noreferrer" className="btn-secondary">
+              Resume
             </a>
           </div>
         </div>
       </section>
-
-      {/* Stats Section */}
-      <section className="section-container pt-0">
-        <div className="grid grid-cols-2 lg:grid-cols-4 gap-4 sm:gap-6">
-          {[
-            { value: '99th', label: 'NCL Percentile', icon: <Shield size={20} /> },
-            { value: '5+', label: 'Web Apps Built', icon: <Code2 size={20} /> },
-            { value: '3+', label: 'Years Experience', icon: <Layers size={20} /> },
-            { value: '15+', label: 'Technologies', icon: <Zap size={20} /> },
-          ].map((stat, idx) => (
-            <div
-              key={idx}
-              className="card-glass text-center py-8 group hover:scale-[1.02] transition-transform duration-300"
-            >
-              <div className="inline-flex items-center justify-center w-10 h-10 rounded-lg bg-white/5 text-[#c7a56b] mb-4 group-hover:scale-110 transition-transform">
-                {stat.icon}
-              </div>
-              <p className="text-3xl sm:text-4xl font-extrabold gradient-text mb-2">{stat.value}</p>
-              <p className="text-gray-500 text-sm font-medium">{stat.label}</p>
-            </div>
-          ))}
-        </div>
-      </section>
-
-      {/* What I Do Section */}
-      <section className="section-container">
-        <div className="text-center mb-16">
-          <h2 className="section-title mb-4">What I Do</h2>
-          <div className="line-accent max-w-xs mx-auto mb-6" />
-          <p className="section-subtitle">
-            Specializing in web development and cybersecurity - building secure, performant applications
-            while protecting digital infrastructure from threats.
-          </p>
-        </div>
-
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-          {[
-            {
-              icon: <Code2 size={28} />,
-              title: 'Full-Stack Web Development',
-              description: 'Building dynamic, responsive web applications end-to-end using Java, Spring Boot, Spring JPA, Angular, HTML, CSS, Bootstrap, and REST APIs - from database design to polished UI.',
-              tags: ['Java', 'Spring Boot', 'Angular', 'REST APIs', 'HTML/CSS'],
-            },
-            {
-              icon: <Shield size={28} />,
-              title: 'Cybersecurity',
-              description: 'Performing risk assessments, security monitoring, vulnerability analysis, and incident response using industry frameworks like NIST RMF and STRIDE.',
-              tags: ['NIST RMF', 'STRIDE', 'SIEM', 'Forensics'],
-            },
-            {
-              icon: <Server size={28} />,
-              title: 'Security Operations',
-              description: 'Deploying and configuring SIEM tools (Splunk, ELK Stack), analyzing network traffic with Wireshark, and ensuring compliance with ISO 27001 standards.',
-              tags: ['Splunk', 'Wireshark', 'ELK Stack', 'ISO 27001'],
-            },
-            {
-              icon: <Layers size={28} />,
-              title: 'Backend & API Development',
-              description: 'Designing scalable microservices, RESTful APIs, and backend systems with Java/Spring Boot, Spring JPA, JDBC, Python, SQL, and enterprise MVC architecture.',
-              tags: ['Java', 'Spring Boot', 'Python', 'SQL', 'Microservices'],
-            },
-            {
-              icon: <Globe size={28} />,
-              title: 'Frontend Engineering',
-              description: 'Crafting interactive single-page applications with Angular, React, and Next.js featuring component-based architecture, routing, data bindings, and responsive design.',
-              tags: ['Angular', 'React', 'Next.js', 'TypeScript'],
-            },
-            {
-              icon: <Zap size={28} />,
-              title: 'Infrastructure & DevOps',
-              description: 'Managing Linux environments, containerization with Docker, infrastructure automation with Ansible/Terraform, and CI/CD pipeline implementation.',
-              tags: ['Linux', 'Docker', 'Ansible', 'Terraform'],
-            },
-          ].map((service, idx) => (
-            <div key={idx} className="card group relative overflow-hidden">
-              <div className="absolute inset-0 bg-gradient-to-br from-cyan-500/5 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500 rounded-2xl" />
-              <div className="relative z-10">
-                <div className="w-12 h-12 rounded-xl bg-cyan-500/10 flex items-center justify-center text-cyan-400 mb-5 group-hover:scale-110 transition-transform duration-300">
-                  {service.icon}
-                </div>
-                <h3 className="text-xl font-bold text-white mb-3">{service.title}</h3>
-                <p className="text-gray-400 text-sm leading-relaxed mb-5">{service.description}</p>
-                <div className="flex flex-wrap gap-2">
-                  {service.tags.map((tag, i) => (
-                    <span key={i} className="tag">{tag}</span>
-                  ))}
-                </div>
-              </div>
-            </div>
-          ))}
-        </div>
-      </section>
-
-      {/* CTA Section */}
-      <section className="section-container">
-        <div className="card-glass text-center py-16 px-8 relative overflow-hidden">
-          <div className="absolute top-0 left-1/2 -translate-x-1/2 w-64 h-32 bg-cyan-500/10 rounded-full blur-[80px] pointer-events-none" />
-          <div className="relative z-10">
-            <h2 className="text-3xl sm:text-4xl font-extrabold text-white mb-4">Ready to work together?</h2>
-            <p className="text-gray-400 max-w-lg mx-auto mb-8">
-              Looking for roles in Web Development and Cybersecurity. Let&apos;s connect and build something secure and impactful.
-            </p>
-            <div className="flex flex-col sm:flex-row gap-4 justify-center">
-              <Link href="/contact" className="btn-primary flex items-center justify-center gap-2">
-                Start a Conversation <ArrowRight size={18} />
-              </Link>
-              <Link href="/projects" className="btn-secondary flex items-center justify-center gap-2">
-                Browse Projects
-              </Link>
-            </div>
-          </div>
-        </div>
-      </section>
-    </div>
+    </>
   )
 }

@@ -4,6 +4,7 @@ import Link from 'next/link'
 import { usePathname } from 'next/navigation'
 import { useState, useEffect } from 'react'
 import { Menu, X } from 'lucide-react'
+import { resumeUrl } from '@/data/site'
 
 export default function Navigation() {
   const [isOpen, setIsOpen] = useState(false)
@@ -11,97 +12,102 @@ export default function Navigation() {
   const pathname = usePathname()
 
   useEffect(() => {
-    const handleScroll = () => setScrolled(window.scrollY > 20)
-    window.addEventListener('scroll', handleScroll)
+    const handleScroll = () => setScrolled(window.scrollY > 8)
+    handleScroll()
+    window.addEventListener('scroll', handleScroll, { passive: true })
     return () => window.removeEventListener('scroll', handleScroll)
   }, [])
 
-  const toggleMenu = () => setIsOpen(!isOpen)
-
   const navLinks = [
-    { href: '/', label: 'Home' },
     { href: '/projects', label: 'Projects' },
     { href: '/experience', label: 'Experience' },
     { href: '/education', label: 'Education' },
     { href: '/skills', label: 'Skills' },
-    { href: '/about', label: 'About Me' },
-    { href: '/contact', label: 'Contact' },
+    { href: '/about', label: 'About' },
   ]
+
+  const isActive = (href: string) => pathname === href || pathname === `${href}/`
 
   return (
     <nav
-      className={`fixed top-0 left-0 right-0 z-50 transition-all duration-500 ${
-        scrolled
-          ? 'bg-primary/70 backdrop-blur-2xl border-b border-white/10 shadow-[0_10px_40px_rgba(0,0,0,0.25)]'
-          : 'bg-transparent'
+      className={`fixed top-0 inset-x-0 z-50 border-b transition-colors duration-200 ease-out ${
+        scrolled || isOpen ? 'bg-ink-900/95 backdrop-blur-md border-line' : 'bg-transparent border-transparent'
       }`}
     >
-      <div className="max-w-6xl mx-auto px-6 sm:px-8">
-        <div className="flex justify-between items-center h-16 sm:h-20">
-          {/* Logo */}
-          <Link href="/" className="group flex items-center gap-2">
-            <div className="w-9 h-9 rounded-2xl bg-gradient-to-br from-[#2b3947] to-[#1a2532] border border-[#c7a56b]/40 flex items-center justify-center font-bold text-sm text-[#f2eadc] shadow-[0_0_20px_rgba(0,0,0,0.35)] transition-all duration-300 group-hover:scale-105">
-              Y
-            </div>
-            <span className="text-white font-semibold text-lg hidden sm:block tracking-tight">
-              Yogesh
-            </span>
+      <div className="container-page">
+        <div className="flex items-center justify-between h-16">
+          <Link href="/" className="text-base font-medium text-fg">
+            Yogesh Botcha
           </Link>
 
-          {/* Desktop Menu */}
-          <div className="hidden md:flex items-center gap-1 rounded-full border border-white/10 bg-white/[0.03] px-2 py-2 backdrop-blur-md">
+          <div className="hidden md:flex items-center gap-1">
             {navLinks.map((link) => (
               <Link
                 key={link.href}
                 href={link.href}
-                className={`relative px-4 py-2 rounded-full text-sm font-medium transition-all duration-300 ${
-                  pathname === link.href
-                    ? 'text-white bg-[#c7a56b]/18 shadow-[inset_0_1px_0_rgba(255,255,255,0.1)]'
-                    : 'text-gray-400 hover:text-white hover:bg-white/[0.04]'
+                aria-current={isActive(link.href) ? 'page' : undefined}
+                className={`h-8 px-3 inline-flex items-center rounded-md text-sm transition-colors duration-150 ease-out ${
+                  isActive(link.href)
+                    ? 'bg-ink-800 text-fg'
+                    : 'text-fg-2 hover:text-fg'
                 }`}
               >
                 {link.label}
-                {pathname === link.href && (
-                  <span className="absolute bottom-1 left-1/2 -translate-x-1/2 w-5 h-0.5 bg-[#c7a56b] rounded-full" />
-                )}
               </Link>
             ))}
+            <a
+              href={resumeUrl}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="h-8 px-3 inline-flex items-center rounded-md text-sm text-fg-2 hover:text-fg transition-colors duration-150 ease-out"
+            >
+              Resume
+            </a>
+            <Link
+              href="/contact"
+              className="ml-3 h-8 px-3 inline-flex items-center rounded-md text-sm font-medium bg-fg text-ink-900 hover:bg-white transition-colors duration-150 ease-out"
+            >
+              Contact
+            </Link>
           </div>
 
-          {/* Mobile Menu Button */}
           <button
-            onClick={toggleMenu}
-            className="md:hidden p-2 text-gray-400 hover:text-white transition-colors rounded-xl hover:bg-white/[0.04]"
-            aria-label="Toggle menu"
+            onClick={() => setIsOpen(!isOpen)}
+            className="md:hidden w-9 h-9 inline-flex items-center justify-center rounded-md text-fg-2 hover:text-fg hover:bg-ink-800 transition-colors duration-150 ease-out"
+            aria-label={isOpen ? 'Close menu' : 'Open menu'}
+            aria-expanded={isOpen}
           >
-            {isOpen ? <X size={22} /> : <Menu size={22} />}
+            {isOpen ? <X size={18} strokeWidth={1.5} /> : <Menu size={18} strokeWidth={1.5} />}
           </button>
         </div>
       </div>
 
-      {/* Mobile Menu */}
-      <div
-        className={`md:hidden overflow-hidden transition-all duration-300 ${
-          isOpen ? 'max-h-96 opacity-100' : 'max-h-0 opacity-0'
-        }`}
-      >
-        <div className="bg-primary/95 backdrop-blur-xl border-t border-white/[0.06] px-6 py-4 space-y-1">
-          {navLinks.map((link) => (
-            <Link
-              key={link.href}
-              href={link.href}
-              className={`block px-4 py-3 rounded-xl text-sm font-medium transition-all duration-300 ${
-                pathname === link.href
-                  ? 'text-[#dec69a] bg-[#c7a56b]/10'
-                  : 'text-gray-400 hover:text-white hover:bg-white/[0.04]'
-              }`}
-              onClick={() => setIsOpen(false)}
+      {isOpen && (
+        <div className="md:hidden border-t border-line animate-rise">
+          <div className="container-page py-3 flex flex-col gap-1">
+            {[...navLinks, { href: '/contact', label: 'Contact' }].map((link) => (
+              <Link
+                key={link.href}
+                href={link.href}
+                onClick={() => setIsOpen(false)}
+                className={`h-10 px-3 flex items-center rounded-md text-sm transition-colors duration-150 ease-out ${
+                  isActive(link.href) ? 'bg-ink-800 text-fg' : 'text-fg-2 hover:text-fg'
+                }`}
+              >
+                {link.label}
+              </Link>
+            ))}
+            <a
+              href={resumeUrl}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="h-10 px-3 flex items-center rounded-md text-sm text-fg-2 hover:text-fg transition-colors duration-150 ease-out"
             >
-              {link.label}
-            </Link>
-          ))}
+              Resume
+            </a>
+          </div>
         </div>
-      </div>
+      )}
     </nav>
   )
 }
