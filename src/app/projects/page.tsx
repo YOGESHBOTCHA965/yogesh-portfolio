@@ -199,7 +199,7 @@ export default function ProjectsPage() {
             </p>
           </div>
           <a
-            href="https://github.com/yogeshbotcha"
+            href="https://github.com/YOGESHBOTCHA965"
             target="_blank"
             rel="noopener noreferrer"
             className="btn-secondary shrink-0"

@@ -14,7 +14,7 @@ export default function Footer() {
 
   const socialLinks = [
     { href: resumeUrl, label: 'Resume (PDF)' },
-    { href: 'https://github.com/yogeshbotcha', label: 'GitHub' },
+    { href: 'https://github.com/YOGESHBOTCHA965', label: 'GitHub' },
     { href: 'https://linkedin.com/in/yogcha', label: 'LinkedIn' },
     { href: 'mailto:yogeshbotcha@gmail.com', label: 'yogeshbotcha@gmail.com' },
   ]

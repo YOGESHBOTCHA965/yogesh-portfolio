@@ -46,7 +46,7 @@ export default function ContactPage() {
   ]
 
   const socialLinks = [
-    { icon: <Github size={16} strokeWidth={1.5} />, label: 'GitHub', href: 'https://github.com/yogeshbotcha', handle: '@yogeshbotcha' },
+    { icon: <Github size={16} strokeWidth={1.5} />, label: 'GitHub', href: 'https://github.com/YOGESHBOTCHA965', handle: '@YOGESHBOTCHA965' },
     { icon: <Linkedin size={16} strokeWidth={1.5} />, label: 'LinkedIn', href: 'https://linkedin.com/in/yogcha', handle: '/in/yogcha' },
     { icon: <Shield size={16} strokeWidth={1.5} />, label: 'Cyber Skyline', href: 'https://cyberskyline.com/report/85UBQ8522G95', handle: 'NCL report' },
   ]
